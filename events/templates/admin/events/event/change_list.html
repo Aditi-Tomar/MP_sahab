@@ -1,0 +1,230 @@
+{% extends "admin/change_list.html" %}
+{% load admin_list static %}
+
+{% block filters %}{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+    /* Hide right-side filters */
+    #changelist-filter {
+        display: none !important;
+    }
+
+    /* Make content full width */
+    #content-main {
+        float: none !important;
+        width: 100% !important;
+    }
+
+    .filtered #changelist-form {
+        margin-right: 0 !important;
+        width: 100% !important;
+    }
+
+    /* Enhanced horizontal filters */
+    .filters-bar {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        align-items: center;
+    }
+
+    .filter-group {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #f8fafc;
+        padding: 8px 12px;
+        border-radius: 6px;
+        border: 1px solid #e2e8f0;
+    }
+
+    .filter-group label {
+        font-weight: 500;
+        color: #4a5568;
+        margin: 0;
+        white-space: nowrap;
+    }
+
+    .filter-group select {
+        padding: 6px 12px;
+        border: 1px solid #cbd5e0;
+        border-radius: 4px;
+        background: white;
+        color: #2d3748;
+        min-width: 120px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .filter-group select:hover {
+        border-color: #4a5568;
+    }
+
+    .filter-group select:focus {
+        outline: none;
+        border-color: #4299e1;
+        box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+    }
+
+    .filter-buttons {
+        display: flex;
+        gap: 10px;
+        margin-left: auto;
+    }
+
+    .filter-btn {
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-weight: 500;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.2s;
+        border: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .apply-filters {
+        background: #4299e1;
+        color: white;
+    }
+
+    .apply-filters:hover {
+        background: #3182ce;
+    }
+
+    .clear-filters {
+        background: #edf2f7;
+        color: #4a5568;
+    }
+
+    .clear-filters:hover {
+        background: #e2e8f0;
+    }
+
+    /* Active filters display */
+    .active-filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .active-filter {
+        background: #ebf8ff;
+        color: #2b6cb0;
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .active-filter .remove {
+        cursor: pointer;
+        color: #4a5568;
+        font-size: 16px;
+        line-height: 1;
+    }
+
+    .active-filter .remove:hover {
+        color: #e53e3e;
+    }
+</style>
+{% endblock %}
+
+{% block content_title %}
+<div class="filters-bar">
+    <div class="filter-group">
+        <label for="is_featured">Featured:</label>
+        <select id="is_featured" name="is_featured">
+            <option value="">All</option>
+            <option value="1" {% if request.GET.is_featured == "1" %}selected{% endif %}>Yes</option>
+            <option value="0" {% if request.GET.is_featured == "0" %}selected{% endif %}>No</option>
+        </select>
+    </div>
+
+    <div class="filter-group">
+        <label for="is_published">Published:</label>
+        <select id="is_published" name="is_published">
+            <option value="">All</option>
+            <option value="1" {% if request.GET.is_published == "1" %}selected{% endif %}>Yes</option>
+            <option value="0" {% if request.GET.is_published == "0" %}selected{% endif %}>No</option>
+        </select>
+    </div>
+
+    <div class="filter-group">
+        <label for="is_archived">Archived:</label>
+        <select id="is_archived" name="is_archived">
+            <option value="">All</option>
+            <option value="1" {% if request.GET.is_archived == "1" %}selected{% endif %}>Yes</option>
+            <option value="0" {% if request.GET.is_archived == "0" %}selected{% endif %}>No</option>
+        </select>
+    </div>
+
+    <div class="filter-buttons">
+        <button type="submit" class="filter-btn apply-filters">
+            <i class="fas fa-filter"></i>
+            Apply Filters
+        </button>
+        <a href="." class="filter-btn clear-filters">
+            <i class="fas fa-times"></i>
+            Clear
+        </a>
+    </div>
+</div>
+
+<!-- Active Filters Display -->
+<div class="active-filters">
+    {% if request.GET.is_featured %}
+    <div class="active-filter">
+        Featured: {{ request.GET.is_featured|yesno:"Yes,No" }}
+        <span class="remove" onclick="removeFilter('is_featured')">&times;</span>
+    </div>
+    {% endif %}
+    {% if request.GET.is_published %}
+    <div class="active-filter">
+        Published: {{ request.GET.is_published|yesno:"Yes,No" }}
+        <span class="remove" onclick="removeFilter('is_published')">&times;</span>
+    </div>
+    {% endif %}
+    {% if request.GET.is_archived %}
+    <div class="active-filter">
+        Archived: {{ request.GET.is_archived|yesno:"Yes,No" }}
+        <span class="remove" onclick="removeFilter('is_archived')">&times;</span>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+<script>
+    function removeFilter(filterName) {
+        const url = new URL(window.location.href);
+        url.searchParams.delete(filterName);
+        window.location.href = url.toString();
+    }
+
+    // Auto-submit form when select changes
+    document.addEventListener('DOMContentLoaded', function() {
+        const selects = document.querySelectorAll('.filter-group select');
+        selects.forEach(select => {
+            select.addEventListener('change', function() {
+                this.form.submit();
+            });
+        });
+    });
+</script>
+{% endblock %}

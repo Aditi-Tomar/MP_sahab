@@ -1,0 +1,137 @@
+Voter Management Project - API Endpoints
+========================================
+
+# Media Management APIs
+-----------------------
+1. List Media
+   GET /api/Media_Management/
+2. Create Media
+   POST /api/Media_Management/
+3. Retrieve Media
+   GET /api/Media_Management/{pk}/
+4. Update Media
+   PUT /api/Media_Management/{pk}/
+5. Partial Update Media
+   PATCH /api/Media_Management/{pk}/
+6. Delete Media
+   DELETE /api/Media_Management/{pk}/
+7. Archive Media
+   POST /api/Media_Management/{pk}/archive/
+8. Publish Media
+   POST /api/Media_Management/{pk}/publish/
+9. Preview Media
+   GET /api/Media_Management/{pk}/preview/
+
+# Blog APIs
+-----------
+1. List Blogs
+   GET /api/blogs/
+2. Create Blog
+   POST /api/blogs/
+3. Retrieve Blog
+   GET /api/blogs/{pk}/
+4. Update Blog
+   PUT /api/blogs/{pk}/
+5. Partial Update Blog
+   PATCH /api/blogs/{pk}/
+6. Delete Blog
+   DELETE /api/blogs/{pk}/
+7. Archive Blog
+   POST /api/blogs/{pk}/archive/
+8. Publish Blog
+   POST /api/blogs/{pk}/publish/
+9. Preview Blog
+   GET /api/blogs/{pk}/preview/
+
+# News APIs
+-----------
+1. List News
+   GET /api/news/
+2. Create News
+   POST /api/news/
+3. Retrieve News
+   GET /api/news/{pk}/
+4. Update News
+   PUT /api/news/{pk}/
+5. Partial Update News
+   PATCH /api/news/{pk}/
+6. Delete News
+   DELETE /api/news/{pk}/
+7. Preview News
+   GET /api/news/{pk}/preview/
+8. Archive News
+   POST /api/news/{pk}/archive/
+9. Unarchive News
+   POST /api/news/{pk}/unarchive/
+
+# Events APIs
+-------------
+1. List Events
+   GET /api/events/events/
+2. Retrieve Event
+   GET /api/events/events/{id}/
+3. Upcoming Events
+   GET /api/events/events/upcoming/
+4. Past Events
+   GET /api/events/events/past/
+5. List Categories
+   GET /api/events/categories/
+6. Events by Category
+   GET /api/events/categories/{category_id}/events/
+
+# Notifications APIs
+--------------------
+1. List Templates
+   GET /api/notifications/templates/
+2. Create Template
+   POST /api/notifications/templates/
+3. List Types
+   GET /api/notifications/types/
+4. List Logs
+   GET /api/notifications/logs/
+5. Send Notification
+   POST /api/notifications/logs/send/
+
+# Passes APIs
+-------------
+1. List Passes
+   GET /api/passes/passes/
+2. Create Pass
+   POST /api/passes/passes/
+3. Retrieve Pass
+   GET /api/passes/passes/{pk}/
+4. Update Pass
+   PUT /api/passes/passes/{pk}/
+5. Partial Update Pass
+   PATCH /api/passes/passes/{pk}/
+6. Delete Pass
+   DELETE /api/passes/passes/{pk}/
+7. Pending Passes
+   GET /api/passes/pending/
+8. Approved Passes
+   GET /api/passes/approved/
+9. Rejected Passes
+   GET /api/passes/rejected/
+10. Approve Pass
+    POST /api/passes/{pk}/approve/
+11. Reject Pass
+    POST /api/passes/{pk}/reject/
+
+# Voters APIs
+-------------
+1. List Voters
+   GET /voters/list/
+2. Filter Voters
+   GET /voters/api/filter-voters/
+3. Process Excel Upload
+   POST /voters/process-excel/
+4. Get Filtered Data
+   GET /voters/get-filtered-data/
+5. Send Notification
+   POST /voters/send-notification/
+
+# Notes
+-------
+- All endpoints may require authentication unless otherwise specified.
+- Replace {pk} or {id} with the actual object ID.
+- For detailed request/response formats, refer to the respective app's serializers or API documentation. 
