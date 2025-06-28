@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'blogs',
     'invitations',
     'drf_yasg',
+    # 'storages',  # Commented out - not using AWS S3
 ]
 
 REST_FRAMEWORK = {
@@ -298,6 +299,24 @@ if not DEBUG:
     
     # Static files configuration for production
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    
+    # Render Media Storage Configuration
+    # Use Render's persistent disk for media files
+    MEDIA_ROOT = '/opt/render/project/src/media'
+    MEDIA_URL = '/media/'
+    
+    # AWS S3 Configuration for Media Files (commented out - not using S3)
+    # AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID', default='')
+    # AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY', default='')
+    # AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME', default='')
+    # AWS_S3_REGION_NAME = config('AWS_S3_REGION_NAME', default='us-east-1')
+    # AWS_S3_FILE_OVERWRITE = False
+    # AWS_DEFAULT_ACL = None
+    # AWS_S3_VERIFY = True
+    
+    # Use S3 for media files in production (commented out)
+    # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    # MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/'
     
     # HTTPS settings (uncomment if using HTTPS)
     # SECURE_SSL_REDIRECT = True

@@ -42,10 +42,12 @@ gunicorn core.wsgi:application
 - Run `python manage.py collectstatic` during build
 - Static files will be served from `/static/`
 
-### 6. Media Files
-For production, consider using:
-- AWS S3 for media file storage (recommended)
-- Or configure Render's persistent disk for media files
+### 6. Media Files (Render Persistent Disk)
+- Media files are stored on Render's persistent disk
+- Path: `/opt/render/project/src/media`
+- Media files are included in Git for initial deployment
+- New uploads will be saved to Render's persistent storage
+- Media files persist between deployments
 
 ### 7. Database (AWS RDS)
 - Your app is already configured to use AWS RDS MySQL
@@ -75,5 +77,5 @@ python manage.py runserver
 - [ ] Static files collected
 - [ ] Migrations applied
 - [ ] Environment variables set
-- [ ] Media file storage configured (AWS S3 recommended)
+- [ ] Media files included in Git
 - [ ] AWS RDS security group allows Render connections 
