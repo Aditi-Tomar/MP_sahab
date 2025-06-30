@@ -33,7 +33,6 @@ var/
 *.pyo
 *.db
 *.sqlite3
-media/
 staticfiles/
 
 # If your build process includes a static directory
