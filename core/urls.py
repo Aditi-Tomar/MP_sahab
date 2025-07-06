@@ -55,8 +55,7 @@ admin.site.site_header = 'Voter Management System'
 admin.site.site_title = 'Voter Management'
 admin.site.index_title = 'Welcome to Voter Management System'
 
-# Serve media files in development
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# Serve media files in development and production
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 #tocken- 6de781264d0c364047f200923f9d581996d5ac98
