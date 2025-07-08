@@ -44,7 +44,7 @@ urlpatterns = [
     path('news/', include('news.urls')),
     path('notifications/', include('notifications.urls')),
     path('passes/', include('passes.urls')),
-    path('media/', include('Media_Management.urls')),
+    path('media_management/', include('Media_Management.urls')),
     path('blogs/', include('blogs.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('invitations/', include('invitations.urls')),
